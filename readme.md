@@ -2,4 +2,4 @@
 
 **Public methods**
 
-**publish**
+**publish(string $message, $queue = 'test')**
