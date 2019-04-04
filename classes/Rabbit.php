@@ -44,7 +44,7 @@ class Rabbit
      * @return $this
      * @throws \Exception
      */
-    public function publish(string $message, $queue = 'test')
+    public function publish($message, $queue = 'test')
     {
         if(empty($queue)) throw new \Exception('Queue name is not defined');
 
@@ -52,7 +52,9 @@ class Rabbit
 
         $msg = new AMQPMessage($message);
 
-        $this->channel->basic_publish($msg, '', $queue);
+        for ($i=0;$i<10;$i++) {
+            $this->channel->basic_publish($msg, '', $queue);
+        }
 
         return $this;
     }

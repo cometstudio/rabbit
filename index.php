@@ -2,12 +2,13 @@
 
 namespace App;
 
-use App\Classes\Rabbit;
-
 require_once 'vendor/autoload.php';
+
+use App\Classes\Rabbit;
 
 try {
     $Rabbit = new Rabbit();
+
 
     $Rabbit->publish('Hello');
 

@@ -20,7 +20,7 @@ class Environment
      */
     public function __construct($pathToConfig = '.env')
     {
-        if(empty($pathToConfig)) throw new \Exception('No config');
+        if(empty($pathToConfig) || !file_exists($pathToConfig)) throw new \Exception('No config');
 
         $this->config = parse_ini_file($pathToConfig);
     }
