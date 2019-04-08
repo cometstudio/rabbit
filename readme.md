@@ -2,4 +2,4 @@
 
 **Public methods**
 
-**publish**
+**$this publish(string $message, $queue = 'test')**
