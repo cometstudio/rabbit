@@ -59,9 +59,22 @@ class Rabbit
         return $this;
     }
 
+    public function consumer ()
+    {
+        if(!$queue = $this ->queue ()) throw new \Exception('QUEUE name is not diferent ');
+        $callback = function ($msg)
+        {
+     echo 'Received' . $msg ->body . PHP_EOL;
+        };
+        $this->channel->basic_consume($queue,'',false , true, false ,$callback);
+    return $this;
+    }
+
     public function finish()
     {
         $this->channel->close();
         $this->connection->close();
     }
+
+
 }
