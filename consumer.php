@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: shurilla
- * Date: 4/8/19
- * Time: 5:37 PM
- */
+
 namespace App;
 
 require_once 'vendor/autoload.php';
@@ -14,8 +9,10 @@ use App\Classes\Rabbit;
 try {
     $Rabbit = new Rabbit();
 
-    $Rabbit->consumer();
+    $Rabbit->consume();
+
     $Channel=$Rabbit->channel();
+
     while (count($Channel->callbacks)){
         $Channel->wait();
     }
