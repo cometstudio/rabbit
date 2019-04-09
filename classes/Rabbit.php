@@ -39,11 +39,35 @@ class Rabbit
     }
 
     /**
+     * @param null|AMQPChannel $value
+     * @return null|AMQPChannel
+     * @throws \Exception
+     */
+
+    public function channel($value=null)
+    {
+        if(!is_null($value)&& !$value instanceof AMQPChannel) throw new \Exception('Wrong Connection');
+        return is_null($value) ? $this->channel : $this->channel = $value ;
+    }
+    /**
+     * @param null|string $name
+     * @return null|string
+     */
+
+    public function queue($name = null)
+    {
+        return is_null($name) ? $this->queue : $this->queue = $name ;
+    }
+
+
+
+    /**
      * @param string $message
      * @param string $queue
      * @return $this
      * @throws \Exception
      */
+
     public function publish($message, $queue = 'test')
     {
         if(empty($queue)) throw new \Exception('Queue name is not defined');
@@ -58,6 +82,8 @@ class Rabbit
 
         return $this;
     }
+
+
 
     public function consumer ()
     {
