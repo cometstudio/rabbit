@@ -69,6 +69,7 @@ class Rabbit
      */
 
     public function publish($message, $queue = 'test')
+
     {
         if(empty($queue)) throw new \Exception('Queue name is not defined');
 
@@ -97,11 +98,13 @@ class Rabbit
             echo 'Received'.$msg->body.PHP_EOL;
         };
 
-        $this->channel->basic_consume($queue,'',false , true, false ,$callback);
-    return $this;
+        $this->channel->basic_consume($queue,'',false , true, false ,false,$callback);
+
+        return $this;
     }
 
     public function finish()
+
     {
         $this->channel->close();
         $this->connection->close();

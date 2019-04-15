@@ -1,24 +1,27 @@
 <?php
 
-namespace App;
+namespace App; //задаем найм спейс
 
-require_once 'vendor/autoload.php';
+require_once 'vendor/autoload.php'; // используем composer
 
-use App\Classes\Rabbit;
+use App\Classes\Rabbit; // указваем путь до файла с классами
 
-try {
-    $Rabbit = new Rabbit();
+try { // задаем блок для обработки ошибо
+    $Rabbit = new Rabbit(); // оздаем экземпляр класса
 
-    $Rabbit->consume();
+    $Rabbit->consume(); // обращаемся к методу класса consumer
 
-    $Channel=$Rabbit->channel();
+    $Channel=$Rabbit->channel(); // создаем пременную Channel и обращаемся к классу rabbit и методу класса channel
 
-    while (count($Channel->callbacks)){
+    while (count($Channel->callbacks))
+    {
+
         $Channel->wait();
     }
 
     $Rabbit->finish();
 
-}catch (\Exception $e) {
+}
+catch (\Exception $e) {
     echo 'Error at '.$e->getLine().' in '.$e->getFile(). ' with ' . ($e->getMessage() ? $e->getMessage() : ' no message') . PHP_EOL;
 }

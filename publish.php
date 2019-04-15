@@ -7,10 +7,11 @@ require_once 'vendor/autoload.php';
 use App\Classes\Rabbit;
 
 try {
+    $RandomMessage = mt_rand('qwerty',30);
     $Rabbit = new Rabbit();
 
 
-    $Rabbit->publish('Hello');
+    $Rabbit->publish($RandomMessage);
 
     $Rabbit->finish();
 
