@@ -21,7 +21,7 @@ try {
 
     $AllTime = (($TimeEnd-$TimeBegin)/10);
 
-    echo $AllTime;
+    echo 'Среднее время выполнения '.$AllTime ,PHP_EOL;
 
     $Rabbit->finish();
 
