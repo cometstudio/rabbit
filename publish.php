@@ -19,9 +19,9 @@ try {
 
     $TimeEnd = microtime(true);
 
-    $AllTime = ($TimeEnd-$TimeEnd);
+    $AllTime = (($TimeEnd-$TimeBegin)/10);
 
-    echo '$AllTime';
+    echo $AllTime;
 
     $Rabbit->finish();
 
