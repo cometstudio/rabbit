@@ -77,11 +77,9 @@ class Rabbit
 
         $msg = new AMQPMessage($message);
 
-        for ($i=0;$i<10;$i++) {
-            $this->channel->basic_publish($msg, '', $queue);
-        }
+                    $this->channel->basic_publish($msg, '', $queue);
 
-        return $this;
+                return $this;
     }
 
     /**

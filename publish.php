@@ -7,11 +7,21 @@ require_once 'vendor/autoload.php';
 use App\Classes\Rabbit;
 
 try {
-    $RandomMessage = mt_rand('qwerty',30);
     $Rabbit = new Rabbit();
 
+    $RandomMessage = str_repeat('qwerty',30);
 
-    $Rabbit->publish($RandomMessage);
+    $TimeBegin = microtime(true);
+
+    for ($i=0;$i<10;$i++) {
+        $Rabbit->publish($RandomMessage);
+    }
+
+    $TimeEnd = microtime(true);
+
+    $AllTime = ($TimeEnd-$TimeEnd);
+
+    echo '$AllTime';
 
     $Rabbit->finish();
 
