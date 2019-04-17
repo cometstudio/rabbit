@@ -20,6 +20,15 @@ class Rabbit
      * Rabbit constructor.
      * @throws \Exception
      */
+
+    public function confiRead()
+    {
+        $Environment = Environment::getInstance();
+        $config = $Environment->config();
+    }
+
+
+
     public function __construct()
     {
         $this->connect();
@@ -29,12 +38,10 @@ class Rabbit
      * @throws \Exception
      */
     protected function connect()
+
     {
-        $Environment = Environment::getInstance();
-
-        $config = $Environment->config();
-
-        $this->connection = new AMQPStreamConnection($config['host'], $config['port'], $config['user'], $config['password']);
+        $config1 = confiRead();
+        $this->connection = new AMQPStreamConnection($config1['host'], $config1['port'], $config1['user'], $config1['password']);
         $this->channel = $this->connection->channel();
     }
 
@@ -70,10 +77,12 @@ class Rabbit
 
     public function publish($message, $queue = 'test')
 
+
     {
+
         if(empty($queue)) throw new \Exception('Queue name is not defined');
 
-        $this->channel->queue_declare($queue, false, false, false, false);
+        $this->channel->queue_declare($queue, false, $config['queueDrubale'], false, false);
 
         $msg = new AMQPMessage($message);
 
