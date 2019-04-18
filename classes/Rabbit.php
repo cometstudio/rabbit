@@ -21,17 +21,19 @@ class Rabbit
      * @throws \Exception
      */
 
-    public function confiRead()
-    {
-        $Environment = Environment::getInstance();
-        $config = $Environment->config();
-    }
-
-
-
-    public function __construct()
+        public function __construct()
     {
         $this->connect();
+    }
+
+    /**
+     * @return array
+     * @throws \Exception
+     */
+    public function config()
+    {
+        $Environment = Environment::getInstance();
+        return $Environment->config();
     }
 
     /**
@@ -40,8 +42,8 @@ class Rabbit
     protected function connect()
 
     {
-        $config1 = confiRead();
-        $this->connection = new AMQPStreamConnection($config1['host'], $config1['port'], $config1['user'], $config1['password']);
+        $config = $this->config();
+        $this->connection = new AMQPStreamConnection($config['host'], $config['port'], $config['user'], $config['password']);
         $this->channel = $this->connection->channel();
     }
 
