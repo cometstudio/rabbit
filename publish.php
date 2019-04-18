@@ -11,16 +11,17 @@ try {
 
     $RandomMessage = str_repeat('a',1024);
 
+    $config = $Rabbit->config();
     $TimeBegin = microtime(true);
 
-    for ($i=0;$i<10000;$i++) {
+    for ($i=0;$i<$config['message']['publiush'];$i++) {
         $Rabbit->publish($RandomMessage);
 
     }
 
     $TimeEnd = microtime(true);
 
-    $AllTime = (($TimeEnd-$TimeBegin)/10000);
+    $AllTime = (($TimeEnd-$TimeBegin)/$config);
 
     echo 'Среднее время выполнения '.$AllTime ,PHP_EOL;
 

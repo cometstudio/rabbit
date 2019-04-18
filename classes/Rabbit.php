@@ -43,7 +43,7 @@ class Rabbit
 
     {
         $config = $this->config();
-        $this->connection = new AMQPStreamConnection($config['host'], $config['port'], $config['user'], $config['password']);
+        $this->connection = new AMQPStreamConnection($config['rabbit']['host'], $config['rabbit']['port'], $config['rabbit']['user'], $config['rabbit']['password']);
         $this->channel = $this->connection->channel();
     }
 
@@ -81,10 +81,11 @@ class Rabbit
 
 
     {
+        $config = $this->config();
 
         if(empty($queue)) throw new \Exception('Queue name is not defined');
 
-        $this->channel->queue_declare($queue, false, $config['queueDrubale'], false, false);
+        $this->channel->queue_declare($queue, false, $config['queue']['durable'], false, false);
 
         $msg = new AMQPMessage($message);
 

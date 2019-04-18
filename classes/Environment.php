@@ -22,7 +22,7 @@ class Environment
     {
         if(empty($pathToConfig) || !file_exists($pathToConfig)) throw new \Exception('No config');
 
-        $this->config = parse_ini_file($pathToConfig, $process_sections = true);
+        $this->config = parse_ini_file($pathToConfig, true);
     }
 
     /**
