@@ -14,16 +14,16 @@ try {
     $config = $Rabbit->config();
     $TimeBegin = microtime(true);
 
-    for ($i=0;$i<$config['message']['publiush'];$i++) {
+    for ($i=0;$i<$config['message']['publish'];$i++) {
         $Rabbit->publish($RandomMessage);
 
     }
 
     $TimeEnd = microtime(true);
 
-    $AllTime = (($TimeEnd-$TimeBegin)/$config);
+    //$AllTime = (($TimeEnd-$TimeBegin)/$config);
 
-    echo 'Среднее время выполнения '.$AllTime ,PHP_EOL;
+//    echo 'Среднее время выполнения '.$AllTime ,PHP_EOL;
 
     $Rabbit->finish();
 
